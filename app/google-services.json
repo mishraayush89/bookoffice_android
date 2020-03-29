@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "221208078983",
+    "firebase_url": "https://bookoffice.firebaseio.com",
+    "project_id": "bookoffice",
+    "storage_bucket": "bookoffice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221208078983:android:14993da4fc2f1cf96da622",
+        "android_client_info": {
+          "package_name": "com.example.bookoffice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221208078983-9cuf3o9qlc5vbhpdhjbntpddahivfrre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA57BKG_rYq4Um3LcYToX8qW_Rjo9ONDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221208078983-9cuf3o9qlc5vbhpdhjbntpddahivfrre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

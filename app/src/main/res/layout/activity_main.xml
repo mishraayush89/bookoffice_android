@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimaryDark"
+
+
+    
+
+    >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="258dp"
+        android:layout_height="189dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bookoffice"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="354dp"
+        android:layout_height="362dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="38dp"
+        android:layout_above="@+id/join_now"
+        android:background="@drawable/frontphoto" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/button"
+        android:padding="20dp"
+
+        android:text="Already a user? Login"
+        android:textColor="@android:color/white"
+
+        ></androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/join_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login"
+
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/button2"
+        android:padding="20dp"
+
+        android:text="Join Now!"
+        android:textColor="@android:color/white"
+
+        ></androidx.appcompat.widget.AppCompatButton>
+
+
+
+
+</RelativeLayout>

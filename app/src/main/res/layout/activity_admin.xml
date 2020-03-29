@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivity"
+    android:background="@color/colorPrimaryDark"
+
+    >
+
+    <ImageView
+        android:id="@+id/book_image"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/camera"
+        android:layout_marginLeft="28dp"
+
+
+        ></ImageView>
+
+    <EditText
+        android:id="@+id/Book_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/book_image"
+        android:padding="20dp"
+        android:background="@drawable/button2"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:hint="Book Name"
+        android:inputType="text"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/Author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Book_name"
+        android:padding="20dp"
+        android:background="@drawable/button2"
+        android:layout_marginTop="20dp"
+        android:hint="Author Name"
+        android:inputType="text"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        ></EditText>
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button2"
+        android:padding="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/Author"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textAlignment="center"
+
+
+
+        ></Spinner>
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:padding="20dp"
+        android:background="@drawable/button2"
+        android:layout_marginTop="20dp"
+        android:hint="Price"
+        android:inputType="number"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        ></EditText>
+
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:layout_marginLeft="25dp"
+
+        android:layout_marginTop="56dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
+        android:padding="20dp"
+
+        android:text="ADD "
+        android:textColor="@android:color/white"
+
+        ></Button>
+
+
+
+
+</RelativeLayout>
