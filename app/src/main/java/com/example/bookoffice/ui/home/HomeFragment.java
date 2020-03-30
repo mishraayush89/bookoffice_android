@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        //Firebase recycler adapter
 
         FirebaseRecyclerOptions<Books> options=new FirebaseRecyclerOptions.Builder<Books>()
                 .setQuery(bookreference,Books.class).build();
@@ -62,7 +63,8 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull BookViewHolder holder, int position, @NonNull Books model) {
                 holder.txtbookname.setText(model.getBookname());
                 holder.txtbookauthor.setText(model.getAuthor());
-                holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                holder.txtProductPrice.setText("Price = " + model.getPrice() + " Rupees");
+                //to load image
                 Picasso.get().load(model.getImage()).into(holder.imageview);
 
             }

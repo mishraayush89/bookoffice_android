@@ -1,7 +1,7 @@
 package com.example.bookoffice.Model;
 
 public class Users {
-    private String name, phone, password;
+    public String name, phone, password;
 
     public Users()
     {

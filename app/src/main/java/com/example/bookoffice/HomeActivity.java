@@ -1,14 +1,27 @@
 package com.example.bookoffice;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bookoffice.Prevalent.Prevalent;
+import com.example.bookoffice.ui.gallery.GalleryFragment;
+import com.example.bookoffice.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -16,9 +29,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    DrawerLayout drawer;
+    TextView profilename;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home2);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,10 +52,20 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        drawer = findViewById(R.id.drawer_layout);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View headerview=navigationView.getHeaderView(0);
+
+         profilename=headerview.findViewById(R.id.user_profile_name);
+
+
+        profilename.setText(Prevalent.currentOnlineUser.getName());
+
+
+
+
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -45,7 +73,57 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        //settings
+        navigationView.getMenu().getItem(4).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(HomeActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(navigationView);
+                return false;
+            }
+        });
+
+
+        //logout
+        navigationView.getMenu().getItem(3).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Paper.book().destroy();
+                Intent i = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(i);
+                drawer.closeDrawer(navigationView);
+                return false;
+            }
+        });
+
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                int id = destination.getId();
+
+                switch (id) {
+                    case R.id.nav_gallery:
+                        Toast.makeText(HomeActivity.this, "Gallery", Toast.LENGTH_SHORT).show();
+                        fab.hide();
+                        break;
+
+                    default:
+                        fab.show();
+
+                }
+            }
+        });
+
+
+
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
