@@ -76,24 +76,26 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //settings
-        navigationView.getMenu().getItem(4).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        navigationView.getMenu().getItem(3).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(HomeActivity.this, "Settings", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(navigationView);
+                Intent i=new Intent(HomeActivity.this,SettingsActivity.class);
+                startActivity(i);
                 return false;
             }
         });
 
 
         //logout
-        navigationView.getMenu().getItem(3).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        navigationView.getMenu().getItem(4).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Paper.book().destroy();
                 Intent i = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(i);
                 drawer.closeDrawer(navigationView);
+                HomeActivity.this.finish();
                 return false;
             }
         });
@@ -106,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 switch (id) {
                     case R.id.nav_gallery:
-                        Toast.makeText(HomeActivity.this, "Gallery", Toast.LENGTH_SHORT).show();
+
                         fab.hide();
                         break;
 

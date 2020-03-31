@@ -36,7 +36,11 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         books= root.findViewById(R.id.recycler_menu);
-        books.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        books.setLayoutManager(mLayoutManager);
 
         bookreference= FirebaseDatabase.getInstance().getReference().child("Books");
 

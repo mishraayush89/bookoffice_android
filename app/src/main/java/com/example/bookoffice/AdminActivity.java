@@ -45,6 +45,8 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductsRef;
     private ProgressDialog loadingBar;
+    private Spinner spinner;
+    private ArrayAdapter<String> dataAdapter;
 
 
 
@@ -53,7 +55,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         bookimage=findViewById(R.id.book_image);
         Inputname=findViewById(R.id.Book_name);
         Inputauthor=findViewById(R.id.Author);
@@ -96,7 +98,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         categories.add("Comic");
         categories.add("Other");
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -275,6 +277,13 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
 
                             loadingBar.dismiss();
                             Toast.makeText(AdminActivity.this, "Product is added successfully..", Toast.LENGTH_SHORT).show();
+                            Inputname.setText("");
+                            Inputauthor.setText("");
+                            Inputprice.setText("");
+                            bookimage.setImageResource(R.drawable.camera);
+                            spinner.setAdapter(dataAdapter);
+
+
                         }
                         else
                         {

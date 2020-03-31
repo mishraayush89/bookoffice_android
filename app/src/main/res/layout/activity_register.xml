@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signup"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@drawable/button2"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:hint="Name"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
 
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@drawable/button2"
         android:layout_marginTop="20dp"
         android:hint="Phone Number"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/reg_ph_number"
 
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@drawable/button2"
         android:layout_marginTop="20dp"
         android:hint="Password"
@@ -82,7 +82,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button"
-        android:padding="20dp"
+        android:padding="15dp"
 
         android:text="Register"
         android:textColor="@android:color/white"
