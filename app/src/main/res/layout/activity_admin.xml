@@ -1,116 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity"
     android:background="@color/colorPrimaryDark"
-
     >
 
     <ImageView
         android:id="@+id/book_image"
         android:layout_width="350dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
+        android:background="@drawable/camera"
         android:scaleType="centerCrop"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/camera"
-        android:layout_marginLeft="28dp"
-
-
-        ></ImageView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.079"></ImageView>
 
     <EditText
         android:id="@+id/Book_name"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/book_image"
-        android:padding="20dp"
         android:background="@drawable/button2"
-        android:layout_marginTop="@android:dimen/app_icon_size"
         android:hint="Book Name"
-        android:inputType="text"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
         android:textSize="17sp"
-        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:textColorHint="@color/colorPrimary"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        ></EditText>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_image"
+        app:layout_constraintVertical_bias="0.097">
+
+    </EditText>
 
     <EditText
         android:id="@+id/Author"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Book_name"
-        android:padding="20dp"
         android:background="@drawable/button2"
-        android:layout_marginTop="20dp"
-        android:hint="Author Name"
-        android:inputType="text"
+        android:hint="Author"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
         android:textSize="17sp"
-        android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:textColorHint="@color/colorPrimary"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        ></EditText>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Book_name"
+        app:layout_constraintVertical_bias="0.092">
+
+    </EditText>
+
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button2"
-        android:padding="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/Author"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:padding="20dp"
         android:textAlignment="center"
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Author"
+        app:layout_constraintVertical_bias="0.151">
 
-
-        ></Spinner>
+    </Spinner>
 
     <EditText
         android:id="@+id/price"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@drawable/button2"
-        android:layout_marginTop="20dp"
         android:hint="Price"
         android:inputType="number"
         android:textSize="17sp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textColorHint="@color/colorPrimary"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        ></EditText>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintVertical_bias="0.167">
 
+    </EditText>
 
-    <Button
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/addbtn"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/price"
-        android:layout_marginLeft="25dp"
+        android:layout_marginTop="16dp"
+        android:text="Upload"
+        android:background="@drawable/button3"
+        android:textColor="#fff"
+        app:spinning_bar_width="4dp"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintVertical_bias="0.157">
 
-        android:layout_marginTop="56dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button"
-        android:padding="20dp"
-
-        android:text="ADD "
-        android:textColor="@android:color/white"
-
-        ></Button>
+    </br.com.simplepass.loadingbutton.customViews.CircularProgressButton>
 
 
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import com.example.bookoffice.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
@@ -55,15 +57,15 @@ public class HomeActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
-        View headerview=navigationView.getHeaderView(0);
-
-         profilename=headerview.findViewById(R.id.user_profile_name);
+        View headerview = navigationView.getHeaderView(0);
 
 
+       //set the name of the user ont the navigation drawer
+        profilename = headerview.findViewById(R.id.user_profile_name);
         profilename.setText(Prevalent.currentOnlineUser.getName());
+        CircleImageView profileImageView=headerview.findViewById(R.id.profile_image);
 
-
-
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -80,8 +82,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 drawer.closeDrawer(navigationView);
-                Intent i=new Intent(HomeActivity.this,SettingsActivity.class);
+
+                Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(i);
+
                 return false;
             }
         });
@@ -100,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+         //navcontroller Destination change listener
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -120,11 +124,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
     }
-
-
-
 
 
     @Override

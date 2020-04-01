@@ -37,11 +37,14 @@ public class HomeFragment extends Fragment {
 
         books= root.findViewById(R.id.recycler_menu);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+
+        //reverse the layout manager
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
 
         books.setLayoutManager(mLayoutManager);
 
+        //firebase database reference
         bookreference= FirebaseDatabase.getInstance().getReference().child("Books");
 
 
@@ -66,7 +69,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull BookViewHolder holder, int position, @NonNull Books model) {
                 holder.txtbookname.setText(model.getBookname());
-                holder.txtbookauthor.setText(model.getAuthor());
+                holder.txtbookauthor.setText("Author= "+model.getAuthor());
                 holder.txtProductPrice.setText("Price = " + model.getPrice() + " Rupees");
                 //to load image
                 Picasso.get().load(model.getImage()).into(holder.imageview);
@@ -81,6 +84,8 @@ public class HomeFragment extends Fragment {
                 return holder;
             }
         };
+
+        //set the adapter to the recycler view
         books.setAdapter(adapter);
         adapter.startListening();
 

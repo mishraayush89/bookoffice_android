@@ -39,13 +39,14 @@ public class splashActivity extends AppCompatActivity {
         public void run(){
 
             try{
+                //timeout
                 sleep(1000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-
+            //check for already signed in user
             String UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
             String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
             if (UserPhoneKey != "" && UserPasswordKey != "") {
