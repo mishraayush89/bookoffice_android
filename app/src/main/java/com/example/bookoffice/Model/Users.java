@@ -1,19 +1,34 @@
 package com.example.bookoffice.Model;
 
 public class Users {
-    public String name, phone, password,image,address;
+    public String email,imageurl,name,uid;
 
     public Users()
     {
 
     }
 
-    public Users(String name, String phone, String password, String image, String address) {
+    public Users(String email, String imageurl, String name, String uid) {
+        this.email = email;
+        this.imageurl = imageurl;
         this.name = name;
-        this.phone = phone;
-        this.password = password;
-        this.image = image;
-        this.address = address;
+        this.uid = uid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public String getName() {
@@ -24,35 +39,11 @@ public class Users {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUid() {
+        return uid;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

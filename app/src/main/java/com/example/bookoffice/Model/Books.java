@@ -1,13 +1,13 @@
 package com.example.bookoffice.Model;
 
 public class Books {
-    private  String bookname, author, price, image, category, pid, date, time;
+    private String bookname, author, price, image, category, pid, date, time,seller,sellerid;
 
-    Books(){
+    Books() {
 
     }
 
-    public Books(String author, String bookname, String category, String date, String image, String pid, String price, String time) {
+    public Books(String bookname, String author, String price, String image, String category, String pid, String date, String time, String seller, String sellerid) {
         this.bookname = bookname;
         this.author = author;
         this.price = price;
@@ -16,6 +16,8 @@ public class Books {
         this.pid = pid;
         this.date = date;
         this.time = time;
+        this.seller = seller;
+        this.sellerid = sellerid;
     }
 
     public String getBookname() {
@@ -81,4 +83,22 @@ public class Books {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
+    public String getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(String sellerid) {
+        this.sellerid = sellerid;
+    }
 }
+
+

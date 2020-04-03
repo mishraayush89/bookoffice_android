@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.bookoffice.BookDetailsActivity;
+import com.example.bookoffice.HomeActivity;
 import com.example.bookoffice.Model.Books;
 import com.example.bookoffice.R;
 import com.example.bookoffice.ViewHolder.BookViewHolder;
@@ -67,12 +69,24 @@ public class HomeFragment extends Fragment {
 
         FirebaseRecyclerAdapter<Books, BookViewHolder> adapter=new FirebaseRecyclerAdapter<Books, BookViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull BookViewHolder holder, int position, @NonNull Books model) {
+            protected void onBindViewHolder(@NonNull BookViewHolder holder, int position, @NonNull final Books model) {
                 holder.txtbookname.setText(model.getBookname());
                 holder.txtbookauthor.setText("Author= "+model.getAuthor());
                 holder.txtProductPrice.setText("Price = " + model.getPrice() + " Rupees");
                 //to load image
                 Picasso.get().load(model.getImage()).into(holder.imageview);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i=new Intent(getActivity(), BookDetailsActivity.class);
+                        i.putExtra("pid",model.getPid());
+                        i.putExtra("sellerid",model.getSellerid());
+                        startActivity(i);
+
+                    }
+                });
+
 
             }
 

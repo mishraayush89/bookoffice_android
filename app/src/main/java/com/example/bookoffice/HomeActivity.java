@@ -6,15 +6,24 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookoffice.Model.Users;
 import com.example.bookoffice.Prevalent.Prevalent;
 import com.example.bookoffice.ui.gallery.GalleryFragment;
 import com.example.bookoffice.ui.home.HomeFragment;
+import com.facebook.login.LoginManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -38,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
     TextView profilename;
+    CircleImageView profileImageView;
+    Button addbook;
 
 
     @Override
@@ -60,12 +71,27 @@ public class HomeActivity extends AppCompatActivity {
         View headerview = navigationView.getHeaderView(0);
 
 
+
+
+
        //set the name of the user ont the navigation drawer
         profilename = headerview.findViewById(R.id.user_profile_name);
-        profilename.setText(Prevalent.currentOnlineUser.getName());
-        CircleImageView profileImageView=headerview.findViewById(R.id.profile_image);
+        //profilename.setText(Prevalent.currentOnlineUser.getName());
+        profileImageView=headerview.findViewById(R.id.profile_image);
 
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        setUI();
+        addbook=findViewById(R.id.add_product_btn);
+        addbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this,AdminActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+        //Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -78,24 +104,16 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //settings
-        navigationView.getMenu().getItem(3).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                drawer.closeDrawer(navigationView);
 
-                Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(i);
-
-                return false;
-            }
-        });
 
 
         //logout
         navigationView.getMenu().getItem(4).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Paper.book().destroy();
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                /*Paper.book().destroy();*/
                 Intent i = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(i);
                 drawer.closeDrawer(navigationView);
@@ -124,6 +142,57 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setUI() {
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+        final String uid=FirebaseAuth.getInstance().getUid();
+
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.child("Users").child(uid).exists())
+                {
+                    Users usersData = dataSnapshot.child("Users").child(uid).getValue(Users.class);
+
+                    if (usersData.getUid().equals(uid)) {
+                        String name=usersData.getName();
+                        profilename.setText(name);
+
+                        Picasso.get().load(usersData.getImageurl()).into(profileImageView);
+
+
+
+
+
+
+
+
+
+                    }
+                        else
+                        {
+
+                            //Toast.makeText(LoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                else
+                {
+                    /*Toast.makeText(LoginActivity.this, "Account with this " + phone + " number do not exists.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();*/
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 

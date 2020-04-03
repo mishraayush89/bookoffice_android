@@ -47,7 +47,7 @@ public class splashActivity extends AppCompatActivity {
             }
 
             //check for already signed in user
-            String UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
+          /*  String UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
             String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
             if (UserPhoneKey != "" && UserPasswordKey != "") {
                 if (!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)) {
@@ -61,75 +61,74 @@ public class splashActivity extends AppCompatActivity {
                     splashActivity.this.finish();
 
                 }
-            }
-            else{
+            }*/
+            //else{
                 Intent i;
                 i = new Intent(splashActivity.this,MainActivity.class);
                 startActivity(i);
                 splashActivity.this.finish();
-
-            }
+         //}
 
 
 
 
         }
-        private void AllowAccess(final String phone, final String password) {
+        /*private void AllowAccess(final String phone, final String password) {
 
 
 
 
-            final DatabaseReference RootRef;
-            RootRef = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
 
 
-            RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
+                if (dataSnapshot.child(parentDbName).child(phone).exists())
                 {
+                    Users usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
 
-                    if (dataSnapshot.child(parentDbName).child(phone).exists())
+                    if (usersData.getPhone().equals(phone))
                     {
-                        Users usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
-
-                        if (usersData.getPhone().equals(phone))
+                        if ( usersData.getPassword().equals(password))
                         {
-                            if ( usersData.getPassword().equals(password))
-                            {
 
 
-                                //Toast.makeText(splashActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(splashActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
 
 
-                                Intent intent = new Intent(splashActivity.this, HomeActivity.class);
-                                Prevalent.currentOnlineUser = usersData;
-                                startActivity(intent);
-                                splashActivity.this.finish();
+                            Intent intent = new Intent(splashActivity.this, HomeActivity.class);
+                            Prevalent.currentOnlineUser = usersData;
+                            startActivity(intent);
+                            splashActivity.this.finish();
 
-                            }
-                            else
-                            {
+                        }
+                        else
+                        {
 
-                                Toast.makeText(splashActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(splashActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    else
-                    {
-                        Toast.makeText(splashActivity.this, "Account with this " + phone + " number do not exists.", Toast.LENGTH_SHORT).show();
-
-                    }
                 }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(splashActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    Toast.makeText(splashActivity.this, "Account with this " + phone + " number do not exists.", Toast.LENGTH_SHORT).show();
 
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(splashActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }*/
 
 
 
-    }
+}
 }

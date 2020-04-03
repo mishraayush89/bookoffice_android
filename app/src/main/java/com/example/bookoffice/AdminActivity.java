@@ -31,6 +31,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -278,6 +280,10 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
 
     //update the  firebase database
     private void SaveProductInfoToDatabase() {
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        String seller=user.getDisplayName();
+        String sellerid=user.getUid();
+
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", key);
         productMap.put("date", date);
@@ -287,6 +293,8 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         productMap.put("category", category);
         productMap.put("price", price);
         productMap.put("bookname", name);
+        productMap.put("seller", seller);
+        productMap.put("sellerid",sellerid);
         ProductsRef.child(key).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
