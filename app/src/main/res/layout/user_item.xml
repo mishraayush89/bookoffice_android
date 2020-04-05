@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
     
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
@@ -24,5 +24,55 @@
         android:layout_centerVertical="true"
         android:textSize="18sp"
         ></TextView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:civ_border_width="10dp"
+        app:civ_border_color="#05df29"
+        android:id="@+id/img_on"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@id/user_item_username"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@id/user_item_profile_pic"
+        android:layout_toEndOf="@id/user_item_profile_pic"
+        android:visibility="gone"
+        ></de.hdodenhof.circleimageview.CircleImageView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:civ_border_width="10dp"
+        app:civ_border_color="#bfbfbf"
+        android:id="@+id/img_off"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@id/user_item_username"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@id/user_item_profile_pic"
+        android:layout_toEndOf="@id/user_item_profile_pic"
+        android:visibility="gone"
+        ></de.hdodenhof.circleimageview.CircleImageView>
+    
+    
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_item_username"
+        android:paddingTop="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/last_message"
+        android:layout_toRightOf="@+id/user_item_profile_pic"
+        android:textColor="@color/colorPrimary"
+        android:maxLines="1"
+        android:layout_marginLeft="20dp"
+
+
+
+        >
+
+    </TextView>
 
 </RelativeLayout>

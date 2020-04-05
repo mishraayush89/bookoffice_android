@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.bookoffice.Model.Books;
 import com.example.bookoffice.Model.Users;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         bookprice=findViewById(R.id.bookdetails_price);
         bookseller=findViewById(R.id.bookdetails_seller);
         backbtn=findViewById(R.id.bookdetails_back);
+        map=findViewById(R.id.location_details);
 
         chat=findViewById(R.id.chatwith_user);
         getBookDetails();
@@ -52,6 +54,20 @@ public class BookDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        final String uid= FirebaseAuth.getInstance().getUid();
+        if(uid.equals(sellerid)){
+            chat.setVisibility(View.INVISIBLE);
+            map.setVisibility(View.INVISIBLE);
+
+        }
+
+
+
+
+
+
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override

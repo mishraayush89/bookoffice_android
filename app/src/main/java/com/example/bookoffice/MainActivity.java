@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bookoffice.Model.Users;
+import com.example.bookoffice.Notifications.Token;
 import com.example.bookoffice.Prevalent.Prevalent;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -35,6 +36,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+        updateToken(FirebaseInstanceId.getInstance().getToken());
 
 
 
@@ -159,6 +162,13 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        }
+    }
+
+    private void updateToken(String token) {
+        DatabaseReference tokenRef = FirebaseDatabase.getInstance().getReference("Tokens");
+        FirebaseUser fUser=FirebaseAuth.getInstance().getCurrentUser();
+        Token token1 = new Token(token);
+        tokenRef.child(fUser.getUid()).setValue(token1);
     }
 
     private void handleFacebookToken(AccessToken accessToken) {
@@ -210,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     userdata.put("email",email);
                     userdata.put("name",name);
                     userdata.put("imageurl",image);
+                    userdata.put("status","offline");
 
                     rootref.child("Users").child(uid).updateChildren(userdata)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -323,6 +334,9 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
+
+
+
 }
 
 

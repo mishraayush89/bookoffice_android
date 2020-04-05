@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bookoffice.Model.Chat;
 import com.example.bookoffice.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
@@ -59,7 +62,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Chat chat=mchat.get(position);
         holder.show_message.setText(chat.getMessage());
 
-        //Picasso.get().load(imgurl).into(holder.profile_image);
+        //Glide.with(mcontext).load(imgurl).into(holder.profile_image);
+
+        if(position==mchat.size()-1){
+            if(chat.isIsseen()){
+                holder.text_seen.setText("seen");
+            }else{
+                holder.text_seen.setText("Delivered");
+            }
+
+
+        }else{
+            holder.text_seen.setVisibility(View.GONE);
+        }
 
 
 
@@ -75,13 +90,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView show_message;
-        public ImageView profile_image;
+        public CircleImageView profile_image;
+        public TextView text_seen;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             show_message=itemView.findViewById(R.id.show_message);
-            profile_image=itemView.findViewById(R.id.chat_item_profile_image);
+            text_seen=itemView.findViewById(R.id.text_seen);
+            //profile_image=itemView.findViewById(R.id.chat_item_profile_image);
         }
 
 

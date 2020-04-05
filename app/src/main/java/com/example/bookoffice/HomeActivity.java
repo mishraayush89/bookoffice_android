@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookoffice.Model.Chat;
 import com.example.bookoffice.Model.Users;
 import com.example.bookoffice.Prevalent.Prevalent;
 import com.example.bookoffice.ui.gallery.GalleryFragment;
@@ -19,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
@@ -48,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout drawer;
     TextView profilename;
     CircleImageView profileImageView;
-    Button addbook;
+    //Button addbook;
 
 
     @Override
@@ -57,14 +61,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home2);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton addbook = findViewById(R.id.fab);
+       /* fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -80,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         profileImageView=headerview.findViewById(R.id.profile_image);
 
         setUI();
-        addbook=findViewById(R.id.add_product_btn);
+
         addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +107,37 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        //settings
+        //chats
+         final FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int unread = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReciever().equals(firebaseUser.getUid()) && !chat.isIsseen()){
+                        unread++;
+                    }
+                }
+                if(unread!=0){
+                    navigationView.getMenu().getItem(1).setTitle("("+unread+") Chats");
+
+                }else{
+                    navigationView.getMenu().getItem(1).setTitle("Chats");
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
 
@@ -113,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
-                /*Paper.book().destroy();*/
+
                 Intent i = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(i);
                 drawer.closeDrawer(navigationView);
@@ -131,11 +165,14 @@ public class HomeActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_gallery:
 
-                        fab.hide();
+
+                        //addbook.setVisibility(View.GONE);
+                        addbook.hide();
+
                         break;
 
                     default:
-                        fab.show();
+                        addbook.show();
 
                 }
             }
@@ -209,4 +246,31 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+  /*  private  void status(String status){
+
+        FirebaseUser fuser=FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+        HashMap<String,Object> hashMap=new HashMap<>();
+        hashMap.put("status",status);
+
+        reference.updateChildren(hashMap);
+
+
+
+
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        status("online");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        status("offline");
+    }*/
 }

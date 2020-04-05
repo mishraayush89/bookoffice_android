@@ -31,6 +31,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -48,7 +50,7 @@ import java.util.List;
 
 public class AdminActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private ImageView bookimage;
-    private EditText Inputname, Inputauthor, Inputprice;
+    private TextInputEditText Inputname, Inputauthor, Inputprice;
     //private Button add;
     private Uri imageuri;
     private static final int gallerypic = 1;
@@ -69,12 +71,12 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_admin);
         spinner = (Spinner) findViewById(R.id.spinner);
         bookimage = findViewById(R.id.book_image);
-        Inputname = findViewById(R.id.Book_name);
-        Inputauthor = findViewById(R.id.Author);
+        Inputname = findViewById(R.id.Book_name_text);
+        Inputauthor = findViewById(R.id.Authortext);
         Inputprice = findViewById(R.id.price);
         add = findViewById(R.id.addbtn);
 
-        loadingBar = new ProgressDialog(this);
+
 
 
         bookimage.setOnClickListener(new View.OnClickListener() {
@@ -302,8 +304,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
                         if (task.isSuccessful()) {
 
 
-                            //loadingBar.dismiss();
-                            //Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp);
+
 
 
                             Toast.makeText(AdminActivity.this, "Product is added successfully..", Toast.LENGTH_SHORT).show();
@@ -317,7 +318,7 @@ public class AdminActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
                         } else {
-                            //loadingBar.dismiss();
+
 
                             String message = task.getException().toString();
                             Toast.makeText(AdminActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();

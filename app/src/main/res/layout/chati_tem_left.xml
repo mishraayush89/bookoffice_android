@@ -6,21 +6,13 @@
     android:padding="8dp"
     >
     
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/chat_item_profile_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/profile"
 
-        >
-
-    </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/show_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/chat_item_profile_image"
+
         android:layout_marginLeft="5dp"
         android:padding="8dp"
         android:text="Hello"
@@ -31,6 +23,14 @@
 
 
 
+
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_seen"
+        android:layout_below="@+id/show_message"
+        android:visibility="gone"
 
         ></TextView>
 

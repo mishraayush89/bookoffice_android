@@ -2,15 +2,17 @@ package com.example.bookoffice.Model;
 
 public class Chat {
     private String message,sender,reciever;
+    private boolean  isseen;
 
     public Chat(){
 
     }
 
-    public Chat(String messae, String sender, String reciever) {
+    public Chat(String messae, String sender, String reciever,boolean isseen) {
         this.message = messae;
         this.sender = sender;
         this.reciever = reciever;
+        this.isseen=isseen;
     }
 
     public String getMessage() {
@@ -35,5 +37,13 @@ public class Chat {
 
     public void setReciever(String reciever) {
         this.reciever = reciever;
+    }
+
+    public boolean isIsseen() {
+        return isseen;
+    }
+
+    public void setIsseen(boolean isseen) {
+        this.isseen = isseen;
     }
 }

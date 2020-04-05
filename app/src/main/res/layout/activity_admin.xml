@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+
+
     >
 
     <ImageView
@@ -19,103 +20,114 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079"></ImageView>
+        app:layout_constraintVertical_bias="0.033"></ImageView>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Book_name"
-        android:layout_width="370dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button2"
-        android:hint="Book Name"
-        android:padding="15dp"
-        android:textColor="#fff"
-        android:textColorHint="#fff"
-        android:textSize="17sp"
-        android:textStyle="bold"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/book_image"
-        app:layout_constraintVertical_bias="0.097">
+        app:layout_constraintVertical_bias="0.072"
+        tools:layout_editor_absoluteX="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Book_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Book Name"
 
-    </EditText>
+            app:layout_constraintBottom_toTopOf="@+id/Book_name"
+            app:layout_constraintTop_toBottomOf="@+id/book_image"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="28dp">
 
-    <EditText
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Author"
-        android:layout_width="370dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button2"
-        android:hint="Author"
-        android:padding="15dp"
-        android:textColor="#fff"
-        android:textColorHint="#fff"
-        android:textSize="17sp"
-        android:textStyle="bold"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Book_name"
-        app:layout_constraintVertical_bias="0.092">
+        app:layout_constraintVertical_bias="0.072"
+        tools:layout_editor_absoluteX="16dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Authortext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Author"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="378dp">
 
-    </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/button2"
-        android:padding="20dp"
+        android:padding="15dp"
         android:textAlignment="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Author"
-        app:layout_constraintVertical_bias="0.151">
+        app:layout_constraintVertical_bias="0.081">
 
     </Spinner>
 
-    <EditText
-        android:id="@+id/price"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@drawable/button2"
-        android:hint="Price"
-        android:inputType="number"
-        android:textSize="17sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textColorHint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.167">
+    <com.google.android.material.textfield.TextInputLayout
 
-    </EditText>
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintVertical_bias="0.21"
+
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/addbtn"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Upload"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/button3"
+        android:text="Upload"
         android:textColor="#fff"
-        app:spinning_bar_width="4dp"
-        app:spinning_bar_color="#FFF"
-        app:spinning_bar_padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price"
-        app:layout_constraintVertical_bias="0.157">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="0.775"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp">
 
     </br.com.simplepass.loadingbutton.customViews.CircularProgressButton>
 
